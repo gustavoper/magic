@@ -4,6 +4,7 @@
     "keywords": ["api", "rest", "framework"],
     "license": "MIT",
     "type": "project",
+    "minimum-stability": "stable",
     "require": {
         "php": ">= 7.0",
         "altorouter/altorouter": "^1.2",
