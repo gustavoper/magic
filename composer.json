@@ -1,8 +1,10 @@
 {
     "name": "giovanni/magic",
     "description": "Magic framework for PHP projects",
+    "keywords": ["api", "rest", "framework"],
     "type": "project",
     "require": {
+        "php": ">= 7.0",
         "altorouter/altorouter": "^1.2",
         "filp/whoops": "^2.1",
         "illuminate/database": "^5.4"
