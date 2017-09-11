@@ -13,14 +13,14 @@ class Eloquent
         // cria uma capsula de configs
         $capsule = new Capsule;
 
-        if (DB_STATUS) {
+        if (getenv('DB_STATUS')) {
             // adiciona a configuração
             $capsule->addConnection([
-                'driver' => DB_DRIVER,
-                'host' => DB_HOST,
-                'database' => DB_NAME,
-                'username' => DB_USER,
-                'password' => DB_PASS,
+                'driver' => getenv('DB_DRIVER'),
+                'host' => getenv('DB_HOST'),
+                'database' => getenv('DB_NAME'),
+                'username' => getenv('DB_USER'),
+                'password' => getenv('DB_PASS'),
                 'charset' => 'utf8',
                 'collation' => 'utf8_unicode_ci',
                 'prefix' => ''
