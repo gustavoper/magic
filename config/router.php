@@ -1,24 +1,32 @@
 <?php
 
-// instância nosso objeto de roteador
-$router = new AltoRouter();
-
-// inclui as rotas criadas
-include '../routes/api.php';
-
-// verifica se alguma rota bateu, "aqui tem coragem, matadô de onça!"
+$router = new \AltoRouter();
+include '../routes/route.php';
 $match = $router->match();
 
-// caso ache a rota, faz a chamada da marvada
-if( $match && is_callable( $match['target'] ) ) {
-    call_user_func_array( $match['target'], $match['params'] ); 
-} else {
-    // headers de json e 404
+if ($match == false) {
+
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
     header('Content-Type: application/json');
-    // retorna um json de erro
     print_r(json_encode([
         'type' => 'error',
         'message' => 'endpoint not found!'
     ]));
+
+} else {
+    list($controller, $action ) = explode('@', $match['target']);
+    $controller = 'App\\Controllers\\'.$controller;
+    $obj = new $controller;
+    if (is_callable(array($obj, $action))) {
+        call_user_func_array(array($obj, $action), array($match['params']));
+    } else {
+        
+        header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+        header('Content-Type: application/json');
+        
+        print_r(json_encode([
+            'type' => 'error',
+            'message' => 'Deu ruim!'
+        ]));
+    }
 }

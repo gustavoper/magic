@@ -2,7 +2,11 @@
 
 namespace App\Controllers;
 
-// podemos usar um http package aqui
-
 class Controller
-{}
+{
+
+    public function hello()
+    {
+        echo 'Bem-vindo ao Magic!';
+    }
+}

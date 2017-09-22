@@ -30,8 +30,7 @@
         {
             "App\\": "./app",
             "App\\Models\\": "./app/models",
-            "App\\Controllers\\": "./app/controllers",
-            "Kernel\\": "./kernel"
+            "App\\Controllers\\": "./app/controllers"
         }
     },
     "scripts": {
