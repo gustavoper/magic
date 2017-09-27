@@ -1,7 +1,6 @@
-#Magic Framework
+# Magic Framework
 
-Magic is a simple, light-weight and ready to go framework. It's mainly
-used to APIs, but it can handle MVC Monolith applications. 
+It's a magical and simple framework built for scalable API solutions. *"Xablau!"*
 
 ## Features
 
