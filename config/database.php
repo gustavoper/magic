@@ -1,11 +1,12 @@
 <?php
 
+namespace App\Database;
+
 // usa o capsule manager do Eloquent ORM para iniciar nossa conexão com o DB
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Eloquent
 {
-
     public function __construct()
     {
         // cria uma capsula de configs
@@ -29,5 +30,3 @@ class Eloquent
         }
     }
 }
-
-new Eloquent;

@@ -5,8 +5,12 @@ namespace App\Controllers;
 class Controller
 {
 
-    public function hello()
+    public function hello($params)
     {
-        echo 'Bem-vindo ao Magic!';
+        if (isset($params['name'])) {
+            return print_r("Welcome to Magic, ".$params['name']);
+        }
+
+        return print_r("Welcome to Magic, young Wizard!");
     }
 }

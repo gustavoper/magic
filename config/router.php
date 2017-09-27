@@ -10,7 +10,7 @@ if ($match == false) {
     header('Content-Type: application/json');
     print_r(json_encode([
         'type' => 'error',
-        'message' => 'endpoint not found!'
+        'message' => 'Hey, your route wasn\'t found!'
     ]));
 
 } else {
@@ -18,7 +18,7 @@ if ($match == false) {
     $controller = 'App\\Controllers\\'.$controller;
     $obj = new $controller;
     if (is_callable(array($obj, $action))) {
-        call_user_func_array(array($obj, $action), array($match['params']));
+        call_user_func_array(array($obj, $action), [$match['params']]);
     } else {
         
         header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
@@ -26,7 +26,7 @@ if ($match == false) {
         
         print_r(json_encode([
             'type' => 'error',
-            'message' => 'Deu ruim!'
+            'message' => 'Ops! Something is wrong!'
         ]));
     }
 }
