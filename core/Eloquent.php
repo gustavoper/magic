@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Database;
+namespace Core;
 
-// usa o capsule manager do Eloquent ORM para iniciar nossa conexão com o DB
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Eloquent
 {
     public function __construct()
     {
-        // cria uma capsula de configs
         $capsule = new Capsule;
 
         if (getenv('DB_STATUS')) {
-            // adiciona a configuração
             $capsule->addConnection([
                 'driver' => getenv('DB_DRIVER'),
                 'host' => getenv('DB_HOST'),
@@ -25,7 +22,6 @@ class Eloquent
                 'prefix' => ''
             ]);
 
-            // da o start no ORM
             $capsule->bootEloquent();
         }
     }
