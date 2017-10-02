@@ -10,7 +10,8 @@
         "altorouter/altorouter": "^1.2",
         "filp/whoops": "^2.1",
         "illuminate/database": "^5.4",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "symfony/http-foundation": "^3.3"
     },
     "authors": [
         {

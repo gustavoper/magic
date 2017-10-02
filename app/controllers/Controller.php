@@ -2,9 +2,8 @@
 
 namespace App\Controllers;
 
-class Controller
+class Controller extends ManaController
 {
-
     public function hello($params)
     {
         if (isset($params['name'])) {
@@ -12,5 +11,12 @@ class Controller
         }
 
         return print_r("Welcome to Magic, young Wizard!");
+    }
+
+    public function postTest()
+    {
+        $json = json_decode($this->request->getContent());
+        $this->response->setData($json);
+        $this->response->send();
     }
 }

@@ -25,7 +25,7 @@ class Router
             $controller = 'App\\Controllers\\'.$controller;
             $obj = new $controller;
             if (is_callable(array($obj, $action))) {
-                call_user_func_array(array($obj, $action), [$match['params']]);
+                call_user_func_array(array($obj, $action), array($match['params']));
             } else {
                 
                 header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
