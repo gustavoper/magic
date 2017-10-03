@@ -4,16 +4,16 @@
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 //load error handler
-new Core\Error();
+new \Core\Error();
 
 // load env variables
-$dotenv = new Dotenv\Dotenv(__DIR__.'/../');
+$dotenv = new \Dotenv\Dotenv(__DIR__.'/../');
 $dotenv->load();
 
 // load routes
-new Core\Router();
+new \Core\Router();
 
 // load EloquentORM
-new Core\Eloquent();
-
-
+if (getenv('DB_STATUS')) {
+    new \Core\Eloquent();
+}
