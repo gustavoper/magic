@@ -4,6 +4,12 @@ namespace App\Controllers;
 
 class Controller extends ManaController
 {
+
+    /**
+     * [hello description]
+     * @param  [type] $params [description]
+     * @return null
+     */
     public function hello($params)
     {
         if (isset($params['name'])) {
