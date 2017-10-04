@@ -14,9 +14,10 @@ and, if you want, create and use a Model. This is just the basics, you can craft
 
 ## How to use it?
 
-* We have Docker!
-`docker-compose up -d`
+1) We have Docker! `docker-compose up -d`
 
-* Access it through `localhost:8080`
+2) Access it through `localhost:8080`
 
-* You got the magic now!
+3) You got the Magic now!
+
+![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
