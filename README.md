@@ -21,3 +21,8 @@ and, if you want, create and use a Model. This is just the basics, you can craft
 3) You got the Magic now!
 
 ![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
+
+## How can I help?
+
+You can follow our [board](https://goo.gl/MB1XYF) on Trello and suggest new features!
+Every Pull Request is welcome :metal:
