@@ -1,14 +1,15 @@
 <?php
 
 namespace Core;
-function routeError()
+function routeError($message)
 {
 	header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 	header('Content-Type: application/json');
 	print_r(json_encode([
 		'type' => 'error',
-		'message' => 'Hey, your route wasn\'t found!'
+		'message' => $message
 	]));
+	
 }
 class Router
 {
@@ -19,7 +20,7 @@ class Router
         $match = $router->match();
 
         if ($match == false) {
-			routeError();
+			routeError('Hey, your route wasn\'t found!');
 		}
 		else {
 
@@ -29,14 +30,7 @@ class Router
             if (is_callable(array($obj, $action))) {
                 call_user_func_array(array($obj, $action), array($match['params']));
             } else {
-                
-                header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-                header('Content-Type: application/json');
-                
-                print_r(json_encode([
-                    'type' => 'error',
-                    'message' => 'Ops! Something is wrong!'
-                ]));
+                routeError('Oops! Something is wrong!');
             }
         }
     }
