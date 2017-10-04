@@ -1,7 +1,16 @@
 <?php
 
 namespace Core;
-
+function routeError($message)
+{
+	header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+	header('Content-Type: application/json');
+	print_r(json_encode([
+		'type' => 'error',
+		'message' => $message
+	]));
+	
+}
 class Router
 {
     public function __construct() 
@@ -11,15 +20,9 @@ class Router
         $match = $router->match();
 
         if ($match == false) {
-
-            header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-            header('Content-Type: application/json');
-            print_r(json_encode([
-                'type' => 'error',
-                'message' => 'Hey, your route wasn\'t found!'
-            ]));
-
-        } else {
+			routeError('Hey, your route wasn\'t found!');
+		}
+		else {
 
             list($controller, $action) = explode('@', $match['target']);
             $controller = 'App\\Controllers\\'.$controller;
@@ -27,14 +30,7 @@ class Router
             if (is_callable(array($obj, $action))) {
                 call_user_func_array(array($obj, $action), array($match['params']));
             } else {
-                
-                header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-                header('Content-Type: application/json');
-                
-                print_r(json_encode([
-                    'type' => 'error',
-                    'message' => 'Ops! Something is wrong!'
-                ]));
+                routeError('Oops! Something is wrong!');
             }
         }
     }
