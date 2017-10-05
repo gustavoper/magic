@@ -1,11 +1,20 @@
 {
-    "name": "giovanni/magic",
-    "description": "Magic framework for PHP projects",
-    "keywords": ["api", "rest", "framework"],
-    "license": "MIT",
+    "name": "giocruz/magic",
+    "description": "Magic Framework",
     "type": "project",
+    "keywords": [
+        "api",
+        "rest",
+        "framework"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Giovanni Cruz",
+            "email": "giovanni.cruz97@hotmail.com"
+        }
+    ],
     "minimum-stability": "stable",
-    "prefer-stable": true,
     "require": {
         "php": ">= 7.0",
         "altorouter/altorouter": "^1.2",
@@ -14,16 +23,7 @@
         "vlucas/phpdotenv": "^2.4",
         "symfony/http-foundation": "^3.3"
     },
-    "authors": [
-        {
-            "name": "Giovanni Cruz",
-            "email": "giovanni.cruz97@hotmail.com"
-        }
-    ],
     "autoload": {
-        "files": [
-            "bootstrap/app.php"
-        ],
         "psr-4": {
             "App\\": "app/",
             "App\\Models\\": "app/models",
