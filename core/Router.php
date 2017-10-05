@@ -6,33 +6,52 @@ class Router
 {
     public function __construct($req, $res) 
     {
-        $router = new \AltoRouter();
-        include '../routes/route.php';
-        $match = $router->match();
+        $match = $this->matchMaker();
 
         if ($match == false) {
-			$this->routeError('Hey, your route wasn\'t found!');
+			$this->routeError($res, 404);
 		}
 		else {
-
             list($controller, $action) = explode('@', $match['target']);
-            $controller = 'App\\Controllers\\'.$controller;
-            $obj = new $controller;
+            $obj = $this->controllerMaker($controller);            
             if (is_callable(array($obj, $action))) {
                 $obj->{$action}($req, $res, $match['params']);
             } else {
-                $this->routeError('Oops! Something is wrong!');
+                $this->routeError($res, 500);
             }
         }
     }
 
-    public function routeError($message)
+    public function routeError($res, $code)
     {
-        header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-        header('Content-Type: application/json');
-        print_r(json_encode([
-            'type' => 'error',
-            'message' => $message
-        ]));
+        $res->headers->set('Content-Type', 'application/json');
+        
+        if ($code == 404)
+        {
+            $message = 'Route not found';
+        } else {
+            $message = 'Ops, you don\'t have mana'; 
+        }
+        $res->setStatusCode($code);
+        $res->setContent(
+            json_encode([
+                'type' => 'error',
+                'message' => $message
+            ])
+        );
+        return $res->send();
+    }
+
+    public function matchMaker()
+    {
+        $router = new \AltoRouter();
+        include '../routes/route.php';
+        return $router->match();
+    }
+
+    public function controllerMaker($controller)
+    {
+        $controller = 'App\\Controllers\\'.$controller;
+        return new $controller;
     }
 }
