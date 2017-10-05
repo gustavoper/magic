@@ -10,9 +10,16 @@ class Controller
     public function hello(Request $req, Response $res, $params)
     {
         if (isset($params['name'])) {
-            return print_r("Welcome to Magic, ".$params['name']);
+            $res->setData([
+                'type' => 'magic',
+                'spell'=> "Welcome to Magic, ".$params['name']
+            ]);
+            return $res->send();
         }
-
-        return print_r("Welcome to Magic, young Wizard!");
+        $res->setData([
+            'type' => 'magic',
+            'spell'=> "Welcome to Magic, young wizard"
+        ]);
+        return $res->send();
     }
 }
