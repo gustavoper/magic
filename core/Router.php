@@ -4,7 +4,7 @@ namespace Core;
 
 class Router
 {
-    public function __construct() 
+    public function __construct($req, $res) 
     {
         $router = new \AltoRouter();
         include '../routes/route.php';
@@ -19,9 +19,9 @@ class Router
             $controller = 'App\\Controllers\\'.$controller;
             $obj = new $controller;
             if (is_callable(array($obj, $action))) {
-                call_user_func_array(array($obj, $action), array($match['params']));
+                $obj->{$action}($req, $res, $match['params']);
             } else {
-                routeError('Oops! Something is wrong!');
+                $this->routeError('Oops! Something is wrong!');
             }
         }
     }
